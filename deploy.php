@@ -57,12 +57,16 @@ foreach ($conf as $cliente => $data) {
 		// creating backup of old module
 		$backupfile = $backuplocation . "/" . $module . date('_Y-m-d_His') ;
 		echo "Creating backup of old module in " . $backupfile . ".<br>";
-		exec("mv " .  $location . "/" . $module . " " . $backupfile);
-		//ToDo check exec error
+		//exec("mv " .  $location . "/" . $module . " " . $backupfile);
+		rename($location . "/" . $module, $backupfile);
+		//ToDo check error
 		
 		// moving files to location
 		echo "Moving module to " . $location . "/" . $module . ".<br>";
-		exec("mv ./" . $module . "-" . $branch . " " .  $location . "/" . $module);
+		//exec("mv ./" . $module . "-" . $branch . " " .  $location . "/" . $module);
+		rename($module . "-" . $branch, $location . "/" . $module);
+		//ToDo check error
+	
 	}
 }
 ?>
